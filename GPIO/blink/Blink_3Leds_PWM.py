@@ -1,27 +1,34 @@
 import RPi.GPIO as GPIO
 import time
 
-led1=17
-led2=27
-led3=22
+ledPins = [17,27,22]
 
-delayTime = 0.05
+delayTime = 0.01
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(led1, GPIO.OUT)
-GPIO.setup(led2, GPIO.OUT)
-GPIO.setup(led3, GPIO.OUT)
 
-pwm1 = GPIO.PWM(led1, 50)  #50Hz
-pwm1.start(0)              #Start from 0 to 100
+for i in range(0,3):
+    GPIO.setup(ledPins[i], GPIO.OUT)
 
+pwm1 = GPIO.PWM(ledPins[0], 50)
+pwm2 = GPIO.PWM(ledPins[1], 50)
+pwm3 = GPIO.PWM(ledPins[2], 50)
+
+pwm1.start(0)
+pwm2.start(0)
+pwm3.start(0)
+
+    
 while True:
     for i in range(0,101):
         pwm1.ChangeDutyCycle(i)
+        pwm2.ChangeDutyCycle(i)
+        pwm3.ChangeDutyCycle(i)
         time.sleep(delayTime)
 
     for i in range(100,-1,-1):
         pwm1.ChangeDutyCycle(i)
+        pwm2.ChangeDutyCycle(i)
+        pwm3.ChangeDutyCycle(i)
         time.sleep(delayTime)
-    
     
