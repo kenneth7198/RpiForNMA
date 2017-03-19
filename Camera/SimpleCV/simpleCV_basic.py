@@ -1,6 +1,6 @@
-from SimpleCV import *
+import SimpleCV
 
-cam = Camera()
+cam = SimpleCV.Camera()
 
 while True:
     img = cam.getImage()

@@ -1,7 +1,9 @@
 import picamera
 import time
 
-camera = picamera.PiCamera(resolution=(640,480), framerate=30)
+camera = picamera.PiCamera()
+camera.resolution=(640,480)
+camera.framerate=30
 camera.ISO = 200
 time.sleep(2)
 
